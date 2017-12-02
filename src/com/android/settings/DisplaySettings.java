@@ -23,6 +23,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
+import androidx.preference.Preference;
+
 import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.display.BrightnessLevelPreferenceController;
 import com.android.settings.display.CameraGesturePreferenceController;
@@ -48,6 +50,8 @@ import java.util.List;
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class DisplaySettings extends DashboardFragment {
     private static final String TAG = "DisplaySettings";
+
+    public static final String KEY_PROXIMITY_ON_WAKE = "proximity_on_wake";
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
 
@@ -84,6 +88,16 @@ public class DisplaySettings extends DashboardFragment {
         super.onCreate(icicle);
         mIntentFilter = new IntentFilter();
         mIntentFilter.addAction("com.android.server.ACTION_FONT_CHANGED");
+
+
+        final Preference proximityWakePreference =
+                (Preference) getPreferenceScreen().findPreference(KEY_PROXIMITY_ON_WAKE);
+        final boolean enableProximityOnWake =
+                getResources().getBoolean(com.android.internal.R.bool.config_proximityCheckOnWake);
+
+        if (!enableProximityOnWake && proximityWakePreference != null){
+            getPreferenceScreen().removePreference(proximityWakePreference);
+        }
     }
 
     @Override
@@ -132,6 +146,16 @@ public class DisplaySettings extends DashboardFragment {
 
     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
             new BaseSearchIndexProvider(R.xml.display_settings) {
+
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    List<String> keys = super.getNonIndexableKeys(context);
+                    if (!context.getResources().getBoolean(
+                            com.android.internal.R.bool.config_proximityCheckOnWake)) {
+                        keys.add(KEY_PROXIMITY_ON_WAKE);
+                    }
+                    return keys;
+                }
 
                 @Override
                 public List<AbstractPreferenceController> createPreferenceControllers(
