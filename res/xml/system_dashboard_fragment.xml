@@ -46,6 +46,13 @@
         settings:controller="com.android.settings.datetime.DateTimePreferenceController"/>
 
     <Preference
+        android:key="buttons"
+        android:title="@string/button_title"
+        android:fragment="com.android.settings.system.buttons.Buttons"
+        android:order="-230"
+        android:icon="@drawable/ic_settings_buttons"/>
+
+    <Preference
         android:key="reset_dashboard"
         android:title="@string/reset_dashboard_title"
         android:summary="@string/reset_dashboard_summary"
