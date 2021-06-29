@@ -16,4 +16,5 @@
     <!-- Themes -->
     <color name="homepage_corvus_themes_background">#FF5E35B1</color>
     <color name="homepage_corvus_ota_background">#FF0F9D58</color>
+    <color name="homepage_equaliser_background">#FF4285F4</color>
 </resources>
