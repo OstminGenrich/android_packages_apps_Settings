@@ -96,7 +96,6 @@ public class PowerUsageSummary extends PowerUsageBase implements OnLongClickList
     private static final String KEY_SCREEN_USAGE = "screen_usage";
     private static final String KEY_TIME_SINCE_LAST_FULL_CHARGE = "last_full_charge";
     private static final String KEY_BATTERY_TEMP = "battery_temp";
-    private static final String KEY_SMART_CHARGING_CATEGORY = "smart_charging_category";
     private static final String KEY_BATTERY_INFO_CATEGORY = "battery_info_category";
 
     private static final String KEY_CURRENT_BATTERY_CAPACITY = "current_battery_capacity";
@@ -107,7 +106,6 @@ public class PowerUsageSummary extends PowerUsageBase implements OnLongClickList
     private String mBatCurCap;
     private String mBatChgCyc;
 
-    private PreferenceCategory mSmartChargingCat;
     private PreferenceCategory mBatteryInfoCat;
 
     @VisibleForTesting
@@ -422,12 +420,6 @@ public class PowerUsageSummary extends PowerUsageBase implements OnLongClickList
         // Check availability of Battery Health
         if (!getResources().getBoolean(R.bool.config_supportBatteryHealth)) {
             getPreferenceScreen().removePreference(mBatteryInfoCat);
-        }
-
-        // Check availability of Smart Charging
-        mSmartChargingCat = (PreferenceCategory) findPreference(KEY_SMART_CHARGING_CATEGORY);
-        if (!getResources().getBoolean(R.bool.config_supportSmartCharging)) {
-            getPreferenceScreen().removePreference(mSmartChargingCat);
         }
 
         // reload BatteryInfo and updateUI
