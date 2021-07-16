@@ -113,6 +113,16 @@
         android:fragment="com.android.settings.corvus.sound.VolumeSteps"
         android:order="-130" />
 
+    <!-- Vibration settings -->
+    <Preference
+        android:fragment="com.android.settings.accessibility.VibrationSettings"
+	android:icon="@drawable/ic_system_vibrate"
+        android:key="vibration_preference_screen"
+        android:persistent="false"
+        android:title="@string/accessibility_vibration_settings_title"
+        settings:controller="com.android.settings.accessibility.VibrationPreferenceController"
+	android:order="-125"/>
+
     <!-- Also vibrate for calls -->
     <Preference
         android:fragment="com.android.settings.sound.VibrateForCallsPreferenceFragment"
@@ -193,7 +203,6 @@
         <!-- Vibrate on touch -->
         <SwitchPreference
           android:key="vibrate_on_touch"
-          android:icon="@drawable/ic_system_vibrate"
           android:title="@string/vibrate_on_touch_title"
           android:summary="@string/vibrate_on_touch_summary"
           settings:keywords="@string/keywords_vibrate_on_touch"/>
