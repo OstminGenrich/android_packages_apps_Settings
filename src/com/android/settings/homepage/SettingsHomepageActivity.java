@@ -93,6 +93,8 @@ public class SettingsHomepageActivity extends FragmentActivity {
         FeatureFactory.getFactory(this).getSearchFeatureProvider()
                 .initSearchToolbar(this /* activity */, toolbar, SettingsEnums.SETTINGS_HOMEPAGE);
 
+	getLifecycle().addObserver(new HideNonSystemOverlayMixin(this));
+
 	avatarView = root.findViewById(R.id.account_avatar);
         avatarView.setImageDrawable(getCircularUserIcon(context));
         avatarView.setOnClickListener(new View.OnClickListener() {
@@ -103,12 +105,6 @@ public class SettingsHomepageActivity extends FragmentActivity {
                 startActivity(intent);
 	    }
 	});
-
-	getLifecycle().addObserver(new HideNonSystemOverlayMixin(this));
-
-	final ImageView avatarView = findViewById(R.id.account_avatar);
-        getLifecycle().addObserver(new AvatarViewMixin(this, avatarView));
-        getLifecycle().addObserver(new HideNonSystemOverlayMixin(this));
 
 	String crvsReleasetype =  SystemProperties.get(ROM_RELEASETYPE_PROP);
 
