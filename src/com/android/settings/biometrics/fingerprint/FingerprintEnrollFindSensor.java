@@ -34,8 +34,6 @@ import com.android.settings.password.ChooseLockSettingsHelper;
 import com.google.android.setupcompat.template.FooterBarMixin;
 import com.google.android.setupcompat.template.FooterButton;
 
-import com.android.internal.util.custom.FodUtils;
-
 /**
  * Activity explaining the fingerprint sensor location for fingerprint enrollment.
  */
@@ -81,10 +79,6 @@ public class FingerprintEnrollFindSensor extends BiometricEnrollBase {
         int sensorLocation = getResources().getInteger(R.integer.config_fingerprintSensorLocation);
         if (sensorLocation < SENSOR_LOCATION_BACK || sensorLocation > SENSOR_LOCATION_RIGHT) {
             sensorLocation = SENSOR_LOCATION_BACK;
-        }
-        if (FodUtils.hasFodSupport(this)){
-            sensorLocation = SENSOR_LOCATION_FRONT;
-            animationView.setVisibility(View.GONE);
         }
         final String customLocation = getResources().getStringArray(
                 R.array.security_settings_fingerprint_sensor_locations)[sensorLocation];
