@@ -35,7 +35,6 @@ import android.widget.LinearLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
-import android.media.audiofx.AudioEffect;
 import androidx.cardview.widget.CardView;
 
 import androidx.transition.AutoTransition;
@@ -64,7 +63,6 @@ public class SettingsHomepageActivity extends FragmentActivity {
     TextView mRavenLair;
     TextView mRavenThemes;
     TextView mCorvusOTA;
-    TextView mEqualiser;
     ImageView arrow;
     CardView cardView;
     LinearLayout hiddenView;
@@ -113,6 +111,8 @@ public class SettingsHomepageActivity extends FragmentActivity {
         cardView = findViewById(R.id.corvus_settings_card);
 	cardView.setBackground(getDrawable(R.drawable.version_bg));
         arrow = findViewById(R.id.expand_card_arrow);
+	String officialTag = "Official";
+        String betaTag = "Beta-Official";
 	cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,14 +121,13 @@ public class SettingsHomepageActivity extends FragmentActivity {
                             new AutoTransition());
                     hiddenView.setVisibility(View.GONE);
                     visibleView.setVisibility(View.VISIBLE);
-		    arrow.setVisibility(View.VISIBLE);
                     arrow.setImageResource(R.drawable.arrow_right);
                 } else {
                     TransitionManager.beginDelayedTransition(cardView,
                             new AutoTransition());
                     hiddenView.setVisibility(View.VISIBLE);
                     visibleView.setVisibility(View.GONE);
-                    arrow.setVisibility(View.GONE);
+                    arrow.setImageResource(R.drawable.arrow_left);
                 }
             }
         });
@@ -146,6 +145,9 @@ public class SettingsHomepageActivity extends FragmentActivity {
     });
 
 	mRavenThemes = findViewById(R.id.raven_themes);
+	if(crvsReleasetype.equals(officialTag) || crvsReleasetype.equals(betaTag)){
+            mRavenThemes.setVisibility(View.VISIBLE);
+        }
         mRavenThemes.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
             Intent nIntent = new Intent(Intent.ACTION_MAIN);
@@ -156,8 +158,6 @@ public class SettingsHomepageActivity extends FragmentActivity {
     });
 
 	mCorvusOTA = findViewById(R.id.corvus_ota);
-	String officialTag = "Official";
-	String betaTag = "Beta-Official";
 	if(crvsReleasetype.equals(officialTag) || crvsReleasetype.equals(betaTag)){
 	    mCorvusOTA.setVisibility(View.VISIBLE);
 	}
@@ -167,19 +167,6 @@ public class SettingsHomepageActivity extends FragmentActivity {
             nIntent.setClassName("com.corvus.ota",
                 "com.corvus.ota.MainActivity");
             startActivity(nIntent);
-        }
-    });
-
-	mEqualiser = findViewById(R.id.equaliser);
-	if(crvsReleasetype.equals(officialTag) || crvsReleasetype.equals(betaTag)){
-            mEqualiser.setVisibility(View.VISIBLE);
-        }
-        mEqualiser.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View v) {
-            Intent nIntent = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
-	    nIntent.putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC);
-            nIntent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, AudioEffect.CONTENT_TYPE_MUSIC);
-            startActivityForResult(nIntent, 0);
         }
     });
 

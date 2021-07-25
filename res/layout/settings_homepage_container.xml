@@ -98,7 +98,7 @@
 	        android:textColor="?android:attr/colorAccent" />
 
 	    <Space
-                android:layout_width="20dp"
+                android:layout_width="50dp"
                 android:layout_height="0dp"/>
 
             <TextView
@@ -109,10 +109,11 @@
                 android:gravity="center"
                 android:drawableTop="@drawable/ic_homepage_corvus_themes"
                 android:text="@string/corvus_themes_title"
-		android:textColor="?android:attr/colorAccent" />
+		android:textColor="?android:attr/colorAccent"
+		android:visibility="gone" />
 
 	    <Space
-                android:layout_width="20dp"
+                android:layout_width="50dp"
                 android:layout_height="0dp"/>
 
             <TextView
@@ -123,21 +124,6 @@
                 android:gravity="center"
                 android:drawableTop="@drawable/ic_homepage_corvus_ota"
                 android:text="@string/corvus_ota_title"
-		android:visibility="gone"
-                android:textColor="?android:attr/colorAccent" />
-
-	    <Space
-                android:layout_width="20dp"
-                android:layout_height="0dp"/>
-
-            <TextView
-                android:id="@+id/equaliser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:drawableTop="@drawable/ic_homepage_equaliser"
-                android:text="@string/equaliser_title"
 		android:visibility="gone"
                 android:textColor="?android:attr/colorAccent" />
 
