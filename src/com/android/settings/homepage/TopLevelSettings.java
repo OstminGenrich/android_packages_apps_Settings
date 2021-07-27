@@ -24,13 +24,17 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
+
+import java.util.Random;
 
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.annotation.ColorInt;
 
 import com.android.settings.R;
 import com.android.settings.core.SubSettingLauncher;
@@ -50,6 +54,8 @@ public class TopLevelSettings extends DashboardFragment implements
     private int mIconStyle;
     private int mNormalColor;
     private int mAccentColor;
+    private int mRandomColor;
+    private int mAlphaColor;
 
     public TopLevelSettings() {
         final Bundle args = new Bundle();
@@ -135,9 +141,22 @@ public class TopLevelSettings extends DashboardFragment implements
         mAccentColor = ta.getColor(1, 0xff808080);
         ta.recycle();
 
+	Random random = new Random();
+	mRandomColor = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+	mAlphaColor = adjustAlpha(mRandomColor, 0.2f);
+
         mIconStyle = Settings.System.getInt(getContext().getContentResolver(),
                 Settings.System.THEMING_SETTINGS_DASHBOARD_ICONS, 0);
         themePreferences(getPreferenceScreen());
+    }
+
+    @ColorInt
+    private static int adjustAlpha(@ColorInt int color, float factor) {
+        int alpha = Math.round(Color.alpha(color) * factor);
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+        return Color.argb(alpha, red, green, blue);
     }
 
     private void themePreferences(PreferenceGroup prefGroup) {
@@ -171,6 +190,10 @@ public class TopLevelSettings extends DashboardFragment implements
                         aIcon.setForegroundColorAicp(mAccentColor);
                         aIcon.setBackgroundColorAicp(0);
                         break;
+		    case 4:
+			aIcon.setForegroundColorAicp(mRandomColor);
+			aIcon.setBackgroundColorAicp(mAlphaColor);
+			break;
                 }
             } else if (icon instanceof LayerDrawable) {
                 LayerDrawable lIcon = (LayerDrawable) icon;
@@ -192,6 +215,10 @@ public class TopLevelSettings extends DashboardFragment implements
                             fg.setTint(mAccentColor);
                             bg.setTint(0);
                             break;
+			case 4:
+			    fg.setTint(mRandomColor);
+			    bg.setTint(mAlphaColor);
+			    break;
                     }
                 }
             }
