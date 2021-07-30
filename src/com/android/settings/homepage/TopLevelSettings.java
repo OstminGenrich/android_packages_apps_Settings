@@ -194,6 +194,9 @@ public class TopLevelSettings extends DashboardFragment implements
 			aIcon.setForegroundColorAicp(mRandomColor);
 			aIcon.setBackgroundColorAicp(mAlphaColor);
 			break;
+		    case 5:
+			aIcon.setBackgroundAlpha(50);
+			break;
                 }
             } else if (icon instanceof LayerDrawable) {
                 LayerDrawable lIcon = (LayerDrawable) icon;
@@ -204,6 +207,9 @@ public class TopLevelSettings extends DashboardFragment implements
                     bg.setTintList(null);
                     fg.setTintList(null);
                     switch (mIconStyle) {
+			case 0:
+			    fg.setTint(mNormalColor);
+			    break;
                         case 1:
                             bg.setTint(mAccentColor);
                             break;
@@ -218,6 +224,9 @@ public class TopLevelSettings extends DashboardFragment implements
 			case 4:
 			    fg.setTint(mRandomColor);
 			    bg.setTint(mAlphaColor);
+			    break;
+			case 5:
+			    bg.setAlpha(50);
 			    break;
                     }
                 }
