@@ -118,7 +118,7 @@
 
     <!-- Corvus Settings -->
     <string name="corvus_settings_title">Corvus Settings</string>
-    <string name="corvus_settings_summary">All the customisation you ever need</string>
+    <string name="corvus_settings_summary">Customize your Device</string>
     <string name="ravenlair_title">Ravenlair</string>
     <string name="corvus_themes_title">Themes</string>
     <string name="corvus_ota_title">RavenDesk</string>

@@ -54,6 +54,7 @@ import com.android.settings.core.HideNonSystemOverlayMixin;
 import com.android.settings.homepage.contextualcards.ContextualCardsFragment;
 import com.android.settings.overlay.FeatureFactory;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.settingslib.drawable.CircleFramedDrawable;
 
 public class SettingsHomepageActivity extends FragmentActivity {
@@ -67,6 +68,7 @@ public class SettingsHomepageActivity extends FragmentActivity {
     CardView cardView;
     LinearLayout hiddenView;
     LinearLayout visibleView;
+    LottieAnimationView lottieAnimationView;
 
     Context context;
     ImageView avatarView;
@@ -91,9 +93,9 @@ public class SettingsHomepageActivity extends FragmentActivity {
         FeatureFactory.getFactory(this).getSearchFeatureProvider()
                 .initSearchToolbar(this /* activity */, toolbar, SettingsEnums.SETTINGS_HOMEPAGE);
 
-	getLifecycle().addObserver(new HideNonSystemOverlayMixin(this));
+	    getLifecycle().addObserver(new HideNonSystemOverlayMixin(this));
 
-	avatarView = root.findViewById(R.id.account_avatar);
+	    avatarView = root.findViewById(R.id.account_avatar);
         avatarView.setImageDrawable(getCircularUserIcon(context));
         avatarView.setOnClickListener(new View.OnClickListener() {
 	    @Override
@@ -104,16 +106,20 @@ public class SettingsHomepageActivity extends FragmentActivity {
 	    }
 	});
 
-	String crvsReleasetype =  SystemProperties.get(ROM_RELEASETYPE_PROP);
+	    String crvsReleasetype =  SystemProperties.get(ROM_RELEASETYPE_PROP);
 
-	visibleView = findViewById(R.id.parent_layout);
+	    visibleView = findViewById(R.id.parent_layout);
         hiddenView = findViewById(R.id.hidden_view);
+
         cardView = findViewById(R.id.corvus_settings_card);
-	cardView.setBackground(getDrawable(R.drawable.version_bg));
+	    cardView.setBackground(getDrawable(R.drawable.version_bg));
+
+        lottieAnimationView = findViewById(R.id.corvusdash_anim);
+        
         arrow = findViewById(R.id.expand_card_arrow);
-	String officialTag = "Official";
+	    String officialTag = "Official";
         String betaTag = "Beta-Official";
-	cardView.setOnClickListener(new View.OnClickListener() {
+	    cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (hiddenView.getVisibility() == View.VISIBLE) {
@@ -122,12 +128,14 @@ public class SettingsHomepageActivity extends FragmentActivity {
                     hiddenView.setVisibility(View.GONE);
                     visibleView.setVisibility(View.VISIBLE);
                     arrow.setImageResource(R.drawable.arrow_right);
+                    lottieAnimationView.playAnimation();
                 } else {
                     TransitionManager.beginDelayedTransition(cardView,
                             new AutoTransition());
                     hiddenView.setVisibility(View.VISIBLE);
                     visibleView.setVisibility(View.GONE);
                     arrow.setImageResource(R.drawable.arrow_left);
+                    lottieAnimationView.playAnimation();
                 }
             }
         });
@@ -144,10 +152,7 @@ public class SettingsHomepageActivity extends FragmentActivity {
         }
     });
 
-	mRavenThemes = findViewById(R.id.raven_themes);
-	if(crvsReleasetype.equals(officialTag) || crvsReleasetype.equals(betaTag)){
-            mRavenThemes.setVisibility(View.VISIBLE);
-        }
+	    mRavenThemes = findViewById(R.id.raven_themes);
         mRavenThemes.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
             Intent nIntent = new Intent(Intent.ACTION_MAIN);

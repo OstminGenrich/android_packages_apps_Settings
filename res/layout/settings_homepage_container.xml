@@ -50,6 +50,18 @@
         app:cardElevation="20dp"
         app:cardCornerRadius="12dp">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/corvusdash_anim"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_rawRes="@raw/dashboardanim"
+                android:scaleType="centerCrop" />
+        </FrameLayout>
+
         <LinearLayout
             android:id="@+id/parent_layout"
             android:layout_width="match_parent"
@@ -63,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/corvus_settings_title"
-	    android:textColor="?android:attr/colorAccent"
+	        android:textColor="?android:attr/colorAccent"
             android:textStyle="bold"
             android:textSize="24sp"
             android:layout_gravity="center"/>
@@ -72,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-	    android:textColor="?android:attr/colorAccent"
+	        android:textColor="?android:attr/colorAccent"
             android:text="@string/corvus_settings_summary"/>
 
         </LinearLayout>
@@ -82,37 +94,36 @@
             android:id="@+id/hidden_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-	    android:gravity="center"
-	    android:background="?android:attr/selectableItemBackground"
+	        android:gravity="center"
+	        android:background="?android:attr/selectableItemBackground"
             android:visibility="gone"
             android:orientation="horizontal">
 
             <TextView
-		android:id="@+id/raven_lair"
+		    android:id="@+id/raven_lair"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:drawableTop="@drawable/ic_settings_ravenlair"
                 android:text="@string/ravenlair_title"
-	        android:textColor="?android:attr/colorAccent" />
+	            android:textColor="?android:attr/colorAccent" />
 
-	    <Space
+	        <Space
                 android:layout_width="50dp"
                 android:layout_height="0dp"/>
 
             <TextView
-		android:id="@+id/raven_themes"
+		        android:id="@+id/raven_themes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:drawableTop="@drawable/ic_homepage_corvus_themes"
                 android:text="@string/corvus_themes_title"
-		android:textColor="?android:attr/colorAccent"
-		android:visibility="gone" />
+		        android:textColor="?android:attr/colorAccent" />
 
-	    <Space
+	        <Space
                 android:layout_width="50dp"
                 android:layout_height="0dp"/>
 
@@ -124,7 +135,7 @@
                 android:gravity="center"
                 android:drawableTop="@drawable/ic_homepage_corvus_ota"
                 android:text="@string/corvus_ota_title"
-		android:visibility="gone"
+		        android:visibility="gone"
                 android:textColor="?android:attr/colorAccent" />
 
         </LinearLayout>
@@ -136,7 +147,7 @@
             android:layout_gravity="end|center"
             android:layout_marginEnd="12dp"
             android:src="@drawable/arrow_right"
-	    android:tint="?android:attr/colorAccent"/>
+	        android:tint="?android:attr/colorAccent"/>
 
     	</androidx.cardview.widget.CardView>
 
