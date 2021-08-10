@@ -35,6 +35,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.annotation.ColorInt;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.settings.R;
 import com.android.settings.core.SubSettingLauncher;
@@ -44,6 +45,8 @@ import com.android.settings.support.SupportPreferenceController;
 import com.android.settingslib.core.instrumentation.Instrumentable;
 import com.android.settingslib.search.SearchIndexable;
 import com.android.settingslib.widget.AdaptiveIcon;
+
+import static android.view.View.OVER_SCROLL_NEVER;
 
 @SearchIndexable(forTarget = MOBILE)
 public class TopLevelSettings extends DashboardFragment implements
@@ -67,6 +70,13 @@ public class TopLevelSettings extends DashboardFragment implements
     @Override
     protected int getPreferenceScreenResId() {
         return R.xml.top_level_settings;
+    }
+
+     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        RecyclerView recyclerView = getView().findViewById(R.id.recycler_view);
+        recyclerView.setOverScrollMode(OVER_SCROLL_NEVER);
     }
 
     @Override
