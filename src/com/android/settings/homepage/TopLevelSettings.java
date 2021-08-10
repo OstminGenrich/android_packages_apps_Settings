@@ -27,6 +27,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
 
 import java.util.Random;
 
@@ -35,6 +36,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.annotation.ColorInt;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.settings.R;
 import com.android.settings.core.SubSettingLauncher;
@@ -57,6 +59,8 @@ public class TopLevelSettings extends DashboardFragment implements
     private int mRandomColor;
     private int mAlphaColor;
 
+    final RecyclerView recyclerView;
+
     public TopLevelSettings() {
         final Bundle args = new Bundle();
         // Disable the search icon because this page uses a full search view in actionbar.
@@ -67,6 +71,13 @@ public class TopLevelSettings extends DashboardFragment implements
     @Override
     protected int getPreferenceScreenResId() {
         return R.xml.top_level_settings;
+    }
+
+     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        recyclerView = getView().findViewById(R.id.recycler_view);
+        recyclerView.setOverScrollMode(View.OVER_SCROLL_NEVER);
     }
 
     @Override
