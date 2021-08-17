@@ -29,8 +29,8 @@
      <!-- Corvus version -->
      <Preference
         android:key="crvs_version"
-	android:title="@string/crvs_version"
-	android:layout="@layout/corvus_version"
+	    android:title="@string/crvs_version"
+	    android:layout="@layout/corvus_version"
         settings:controller="com.android.settings.deviceinfo.firmwareversion.CrvsVersionPreferenceController"/>
 
     <!-- Android version -->
