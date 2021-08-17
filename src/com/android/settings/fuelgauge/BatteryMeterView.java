@@ -99,6 +99,7 @@ public class BatteryMeterView extends CardView {
         progress_Text.setGravity(Gravity.CENTER_HORIZONTAL);
         progress_Text.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
         progress_Text.setAlpha((float) 0.7);
+        progress_Text.setShadowLayer(1.5f, -1, 2, Color.BLACK);;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));

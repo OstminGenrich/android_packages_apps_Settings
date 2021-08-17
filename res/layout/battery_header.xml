@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-	android:textAppearance="?android:attr/textColorPrimary"
+	    android:textAppearance="?android:attr/textColorPrimary"
         android:visibility="gone"
         android:textSize="36sp" />
 
